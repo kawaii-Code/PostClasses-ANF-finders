@@ -140,10 +140,10 @@ public static class PostClasses
         {
             if (!eval[i])
                 continue;
-            
-            for (int j = i + 1; j < eval.Length; j++)
-                if ((i | j) == j && !eval[j])
-                        return false;
+
+            for (int j = 1; j < eval.Length; j <<= 1)
+                if (!eval[i | j])
+                    return false;
         }
         
         return true;
