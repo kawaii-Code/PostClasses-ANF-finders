@@ -25,8 +25,8 @@ public static class PostClasses
         int m = int.Parse(Input("M >> "));
         switch (m)
         {
-            case <= 0:
-                throw new ArgumentException($"Variable count must be greater than 0! Was {m}.");
+            case < 0:
+                throw new ArgumentException($"Variable count should not be negative! Was {m}.");
             case >= 31:
                 throw new ArgumentException($"Variable count is too big! The program will be slow for {m} variables.");
         }
@@ -123,6 +123,9 @@ public static class PostClasses
     
     private static bool BelongsToS(bool[] eval)
     {
+        if (eval.Length == 1)
+            return false;
+        
         for (int i = 0; i < eval.Length / 2; i++)
             if (eval[i] == eval[^(i + 1)])
                 return false;
