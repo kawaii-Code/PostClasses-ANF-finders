@@ -110,11 +110,9 @@ public static class PostClasses
                 continue;
 
             bool ifWasLinear = eval[0];
-            for (int j = i - 1; j > 0; j--)
-            {
+            for (int j = 1 << (int)Math.Log2(i); j > 0; j >>= 1)
                 if ((j & i) != 0)
-                    ifWasLinear ^= eval[j];
-            }
+                    ifWasLinear ^= eval[j] ^ eval[0];
 
             if (ifWasLinear != eval[i])
                 return false;
